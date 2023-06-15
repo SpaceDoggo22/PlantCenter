@@ -4,14 +4,14 @@
 #define DHTTYPE DHT11
 #define DHT11_PIN 7
 DFRobot_DHT11 DHT;
-int Contrast = 75;
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
-const int sensorPin = 0;
-int lightlevel;
+const int Contrast = 150; //sets the LCD's contrast to be a constant varible of 150
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2); //initializes the LCD
+const int sensorPin = 0; //sets the sensorPin to be a constant varible to pin 0
+int lightlevel; //creates an integer varible called lightlevel
 
  void setup(){
-    analogWrite(6, Contrast);
-    Serial.begin(9600);
+    analogWrite(6, Contrast); //adds the contrast to the LCD
+    Serial.begin(9600); //initializes the serial at 9600 Baud
     Serial.print("temperature, humidity, and light"); //prints ordering once
  }
 void lcdwrite(){
@@ -24,7 +24,7 @@ void lcdwrite(){
     lcd.print("L:"); //Prints a "L" to singal that the following data is the lightLevel
     lcd.print(lightlevel); //Prints out the lightlevel
     lcd.setCursor(0, 1); //Sets the cusor to the second line for the date
-    lcd.print("6/??/23"); //prints out the data
+    lcd.println("6/??/23"); //prints out the data
 }
 
  void serialwrite(){
@@ -33,12 +33,11 @@ void lcdwrite(){
     Serial.print(","); //adds a commaa so the serial can make a chart
     Serial.print(DHT.humidity); //prints out the humidity second
     Serial.print(","); //adds a commaa so the serial can make a chart
-    Serial.print(lightlevel); //finally prints the light level which
-    Serial.println(",");
+    Serial.print(lightlevel); //finally prints the light level
     }
     
  void loop(){
     lcdwrite(); //runs the lcdwrite command to write to the LCD
     serialwrite(); //runs the serialwrite command to print to serial the data
-    delay(1000);
+    delay(1000); //adds a one second delay
 }
