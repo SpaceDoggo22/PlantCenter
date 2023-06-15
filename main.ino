@@ -10,6 +10,7 @@ const int sensorPin = 0; //sets the sensorPin to be a constant varible to pin 0
 int lightlevel; //creates an integer varible called lightlevel
 
  void setup(){
+    lcd.begin(16,2); // Initializes the interface to the LCD screen, and specifies the dimensions (width and height) of the display } 
     analogWrite(6, Contrast); //adds the contrast to the LCD
     Serial.begin(9600); //initializes the serial at 9600 Baud
     Serial.print("temperature, humidity, and light"); //prints ordering once
